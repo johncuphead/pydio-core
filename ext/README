@@ -1,0 +1,41 @@
+/*
+ * Copyright 2007-2017 Abstrium SAS
+ * This file is part of Pydio.
+ *
+ * Pydio is a free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Pydio is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Pydio.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The latest code can be found at <http://pydio.com/>.
+ */
+2016-01-20 : Update Joomla for compatibility with 3.7
+
+2014-01-16 : Switch to Pydio
+
+Rechecked that the plugins were working on all recent versions of WP, Joomla! and Drupal.
+Massively update the How-To's to reflect the name change but also the fact that the conf is no more in a bootstrap file but through the Settings panel.
+
+2013-05-10 : Update of Joomla plugin
+
+The Joomla! plugin should be working on 2.5 (use the 1.7/ folder content) and 3.0 (new 3.0/ folder).
+
+2011-12-16 : This is the Ajaxplorer v4 Compatible CMS Bridges Package.
+
+The main changes are the How-To updates to be compatible with v4, and the support of Drupal 7.X
+Please refer to ajaxplorer.info for more info.
+
+Package content : 
+
+> Modules for Drupal 6.X & 7.X
+> Wordpress Extension
+> Joomla Plugin for 1.5 & 1.6 , working ok on 1.7, 2.5, 3.0
+> "No_Cms" : login page sample if you want a simple external login page.

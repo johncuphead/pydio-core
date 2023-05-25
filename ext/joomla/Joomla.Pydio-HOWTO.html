@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>AjaXplorer Joomla Bridge</title>
+	
+		
+		<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type"></head><body bgcolor="#ffffff" text="#000000">
+		<p>
+This is the bridge between a Joomla installation and an Pydio. The aim
+is to provide a single-signon mechanism based on the Joomla users
+system : users logged in joomla must have access to repositories of
+Pydio. <strong><em>It's
+never totally evident to interface two different softwares, so don't
+expect it to be magical, and please follow the steps carefully and in
+this order.</em></strong></p>
+		<h3>
+			1/ Base Installation</h3>
+		
+		<p>
+			<strong></strong>First of all, make sure you have a Pydio recent version installed and Joomla 1.5, 1.6, 2.5 or 3.0<strong></strong><br>
+			Drop the right plugin version inside your Joomla installation folder (the "<em>tmp</em>" folder of your Joomla installation.)</p>
+		<h3>
+			2/ Pydio configuration</h3>
+		<p>
+			<strong>2.1 Administrator &amp; guest</strong><br>
+			</p>
+<p>If it's not already done, with the standard Pydio authentication mechanism, be sure that at least an "admin" user is created.</p>
+
+		<p>
+			<strong></strong>If you intend to allow guest browsing, set
+the "Allow Guest Browsing" option to
+true in the Settings &gt; Global Options &gt; Core Options &gt;
+Authentication, and if you are logged, log out. This should create the
+"guest" user. As admin, log back to the interface and create a "Guest"
+Repository. Go to the users section and grant access (read only may be
+better) to this repository to the "guest" user. Now, when you log out,
+you should have access to this repository.</p>
+		<p>
+			<strong>2.2 Workspaces</strong><br></p>
+<p> Now create one or many repositories that you will want your joomla
+logged users to access. You can use the AJXP_USER keyword inside the
+repository PATH if you want to create automatically "personnal" folders
+for each users. Considering the acces rights, the trick here would be
+to set a "Default Rights" value to "rw", so that you don't have to
+manually edit the users rights each time you add them.</p>
+
+		
+		<p>
+			<strong>2.3 Auth.remote configuration</strong><br>
+			<span class="Apple-style-span" style="font-weight: normal;"></span></p>
+<p><span class="Apple-style-span" style="font-weight: normal;">Go to </span>Settings &gt; Global Options &gt; Core Options &gt; Authentication<span class="Apple-style-span" style="font-weight: normal;"> and set the "Main Instance" driver to be the <strong>auth.remote</strong>
+(Remote Authentication). There is a commented sample in the config file
+aimed at Joomla user, you should use the following values :</span></p>
+
+		
+		
+<ul>
+<li>Choose the CMS Type "Joomla"</li><li>Enter your Drupal installation full URL (e.g. http://domain.tld/joomla)</li><li>Leave the Home node to default "/" , except if this page does not contain any login form by default<br>
+</li><li>Leave the Auth Form ID to default "user-login-form", except if the
+login form on your drupal home page has not as html ID this string. You
+can check that using the HTML inspector of your favorite browser.</li>
+  <li>Exit Action: either leads back to drupal page, or triggers a log out.</li>
+<li>Local Prefix: force some users with specific prefix to be stored and authenticated locally (not against drupal).</li><li>Secret Key: this will be a string that both side (pydio &amp; drupal) will share to recognize each other</li><li>Login Redirect: if set to a given page URL, when arriving on pydio, a not-logged guest will be directly redirected to this page.</li><li>Admin Login: make sure a specific user will be recognized as administrator by Pydio.<br>
+  </li>
+</ul>
+
+<p>Other options should be left to default values, otherwise put your
+mouse on the options label to get more info. For the secret key,warning, if you want to use a "$" sign in
+your key, you have to put a \ before. </p>
+
+<p>Also make sure NOT to set a secondary instance, this plugin does not support multi-auth configuration yet.</p>
+
+		
+		<h3>
+			3/ Joomla Configuration</h3>
+		<p>
+			<strong>3.1 Install Extension</strong><br>
+			</p>
+<p>Login to Joomla adminstration front-end and go to "Extensions &gt;
+Install/Uninstall". Normally, the "Install from a folder" section
+should be already filled with your "tmp" folder path. Click "Install"
+beside this field. It should install successfully the User - Pydio
+plugin.</p>
+
+		<p>
+			<strong>3.2 Activate and Configure the new plugin</strong><br>
+			</p>
+<p>Go to "Extension &gt; Manage Plugins" and find the User - Pydio
+plugin module in the list. You can select the plugin type "user" to
+filter the list. Click in the "Active" column to activate this plugin,
+then enter the plugin configuration. Change the "Order" parameter to
+make sure this plugin is called AFTER your master authentication
+plugin, generally user.joomla. Then there are three ajxp-parameters to
+configure for this plugin :&nbsp;</p>
+
+		<ul>
+			<li>
+				<strong>Pydio Install Path</strong> : here you have
+to enter the full path to the Pydio installation. "Full path" in the
+sense of the server filesystem. On Windows, it could be
+C:/Programs/ApacheData/html/ajaxplorer, or Linux more probably
+/var/www/html/Pydio. In any cases, use "slashes" and not backslashes,
+and take care that names are case sensitive.</li>
+			<li>
+				<strong>Secret Key</strong>
+: here you'll have to enter the "SECRET" you entered in the Pydio
+configuration. If it's not the same, it will (silently) not work.</li>
+			<li>
+				<strong>Auto Create Users</strong>
+: This option is useful specially if you are installing this "bridge"
+when already managing many users in a Joomla installation. By default
+("no"), Users will be created in Pydio only by a joomla administrator
+action of creating a Joomla users. Existing users will not be
+recognized by Pydio. If you set to "Auto create", existing users will
+be automatically created when a user logs in to Joomla.</li>
+		</ul>
+		<p>
+			Save the module configuration.</p>
+		<p>
+			<strong>3.3 Use!</strong><br>
+Now everything should be connected, and you can try the following :
+create an Administrator user and a simple user in Joomla. Log in to
+Joomla as these user and check that you are recognized in Pydio, and
+further more, that the administrator has Pydio administration rights.
+If you want to enable the guest mechanism in Pydio, log out from Joomla
+and check that you are recognized as "guest" in Pydio.</p>
+	
+</body></html>

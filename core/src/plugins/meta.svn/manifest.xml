@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta id="meta.svn" enabled="false" label="CONF_MESSAGE[Subversion Repository]" description="CONF_MESSAGE[Extract SVN informations (revision, change log, etc) if the repository is a Working-Copy, and SVN is available as a commandline.]"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../core.ajaxplorer/ajxp_registry.xsd">
+    <plugin_info>
+        <core_relation packaged="false" tested_version="7.0"/>
+    </plugin_info>
+	<class_definition filename="plugins/meta.svn/SvnManager.php" classname="Pydio\Access\Meta\Version\SvnManager"/>
+	<client_settings icon="plugins/access.mysql/resources/images/mysql_icon.png">
+		<resources>
+			<i18n namespace="meta.svn" path="plugins/meta.svn/i18n" />
+			<js file="plugins/meta.svn/class.SVNLogger.js" className="SVNLogger"/>
+		</resources>
+	</client_settings>
+	<registry_contributions>
+		<hooks>
+			<serverCallback hookName="version.commit_file" methodName="commitFile"></serverCallback>
+		</hooks>
+		<client_configs>
+			<component_config component="FilesList">
+				<columns>
+					<additional_column messageId="243" attributeName="last_revision" sortType="String"/>
+				</columns>
+			</component_config>
+		</client_configs>
+		<actions>
+			<action name="svnlog">
+				<gui text="meta.svn.2" title="meta.svn.21" iconClass="icon-undo" hasAccessKey="false">
+					<context selection="true" dir="false" recycle="false" behaviour="hidden"
+						actionBar="true" contextMenu="true" infoPanel="false"
+						actionBarGroup="put">
+					</context>
+					<selectionContext dir="true" file="true" recycle="true" unique="true" behaviour="hidden"/>
+                </gui>
+				<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+				<processing>
+					<clientCallback><![CDATA[
+                        ResourcesManager.detectModuleToLoadAndApply('SVNLogger', function(){
+							var loadFunc = function(oForm){
+								pydio.getController().svnLogger = new SVNLogger($(oForm));
+								pydio.getController().svnLogger.open();
+							};
+							var closeFunc = function(){
+								pydio.getController().svnLogger.close();
+								hideLightBox();
+								return false;
+							};
+							modal.showDialogForm('SVN', 'svnlog_box', loadFunc, closeFunc, null, true, true);
+                        });
+						]]></clientCallback>
+					<clientForm id="svnlog_box"><![CDATA[
+					<div id="svnlog_box" action="svnlog" box_width="80%" box_height="340"></div>
+					]]></clientForm>
+					<serverCallback methodName="switchAction"/>
+					</processing>
+			</action>
+			<action name="svnlog2">
+				<gui text="meta.svn.1" title="meta.svn.11" iconClass="icon-undo" hasAccessKey="false">
+					<context selection="false" dir="true" recycle="true" actionBar="false" contextMenu="true" infoPanel="false" actionBarGroup="change"/>
+				</gui>
+				<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+				<processing>
+					<clientCallback><![CDATA[
+						var loadFunc = function(oForm){
+							pydio.getController().svnLogger = new SVNLogger($(oForm));
+							pydio.getController().svnLogger.open(true);
+						};
+						var closeFunc = function(){
+							pydio.getController().svnLogger.close();
+							hideLightBox();
+							return false;
+						};
+						modal.showDialogForm('SVN', 'svnlog_box', loadFunc, closeFunc, null, true, true);
+					]]></clientCallback>
+					</processing>
+			</action>
+			<action name="svndownload">
+				<processing>
+					<serverCallback methodName="switchAction"></serverCallback>
+				</processing>
+			</action>
+			<action name="revert_file">
+				<processing>
+					<serverCallback methodName="switchAction"></serverCallback>
+				</processing>
+			</action>
+			<action name="svnswitch">
+				<processing>
+					<serverCallback methodName="switchAction"></serverCallback>
+				</processing>
+			</action>
+			<!-- Totally override delete action (svn performs the real deletion) -->
+			<action name="delete">
+				<processing>
+					<serverCallback methodName="deleteSelection"></serverCallback>
+				</processing>
+			</action>
+			<action name="restore">
+				<processing>
+					<serverCallback methodName="deleteSelection"></serverCallback>
+				</processing>
+			</action>
+			<action name="copy">
+				<processing>
+					<serverCallback methodName="copyOrMoveSelection"></serverCallback>
+				</processing>
+			</action>
+			<action name="move">
+				<processing>
+					<serverCallback methodName="copyOrMoveSelection"></serverCallback>
+				</processing>
+			</action>
+			<action name="rename">
+				<processing>
+					<serverCallback methodName="copyOrMoveSelection"></serverCallback>
+				</processing>
+			</action>
+			<!-- Trigger commit after changes -->
+			<action name="put_content">
+				<post_processing>
+					<serverCallback methodName="commitChanges"></serverCallback>
+				</post_processing>
+			</action>
+			<!-- Trigger add -->
+			<action name="mkdir">
+				<post_processing>
+					<serverCallback methodName="addSelection"></serverCallback>
+				</post_processing>
+			</action>
+			<action name="mkfile">
+				<post_processing>
+					<serverCallback methodName="addSelection"></serverCallback>
+				</post_processing>
+			</action>
+			<action name="upload">
+				<post_processing>
+					<serverCallback methodName="addSelection"></serverCallback>
+				</post_processing>
+			</action>
+		</actions>
+		<hooks>
+			<serverCallback hookName="node.info" methodName="extractMeta"></serverCallback>
+		</hooks>
+	</registry_contributions>
+	<dependencies>
+		<!-- Wrapper type plugins only -->
+		<pluginClass pluginName="access.fs|access.demo"/>
+	</dependencies>
+</meta>

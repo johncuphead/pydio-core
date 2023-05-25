@@ -1,0 +1,291 @@
+Pydio 8.2.5 Release Note
+
+This is a hotfix for Pydio 8.2.4 that could lead to breaking changes on old installations
+
+Add compat class name for unserialization
+Fix count accessible users
+
+---
+Pydio 8.2.4
+
+This is a bugfix and security release for Pydio 8.X, see the Changelog below for commits details.
+
+Add EOL date
+Fix list user in group
+Fix override hidden file in recycle_bin
+Fix notification
+Security patch
+Add backtrace warning
+Ignore error of @ case
+Remove @
+Disable by default
+Fix smart-app-banner dependency
+---
+
+Pydio 8.2.3
+
+Bugfix and security release
+
+This is a bugfix and security release for Pydio 8.X, see the Changelog below for commits details.
+Remove symlink
+Fix zoho display in IE11
+fix download multiple files on windows env
+fix download all on smb workspace
+fix php72 compat
+Add export user list action
+Remove unused variables
+replace deprecated function
+bypass writing error in text log
+fix permission merging with mask
+Let video player add its own cookie
+Remove support for legacyShares
+Seed the version number with server uuid
+Do not open html ctype in external window
+Set webdav force basic auth to true by default
+Move some configs in inc file
+
+---
+
+Pydio 8.2.2 is a bugfix and security release for Pydio 8.X
+
+Fix upload on mobile apps
+Hard-coded CORS support - to be added via a proper PSR-7 middleware
+Escaping mount type
+PSR-7 middleware for CORS requests
+Latest changes for CORS middleware
+Making it configurable
+Fixing order or middlewares and default values
+Adding to the release note
+Add new api 2 for migration to cells
+Fix api2migration json
+fix counting function
+Change how we set up the Antivirus scanner command
+Fix sanitization in odf iframe
+Use imports
+Fix missing Download All button on minisite
+Make sure meta.monitor_fs is shown as experimental - Fix preferences serial/deserialization
+Update api2.json with shares API's
+Fix Quota computing that doubles quota uisage Refix preferences
+Unserialize second parameter is not supported before php 7
+From parameter is not used in send_mail action
+Update user session if admin is editing himself.
+Change indexes on ajxp_feed.
+Put all executable paths inside config files
+
+Pydio 8.2.1 is a bugfix and security release for Pydio 8.X
+
+Update user id inside tmpNode
+Use a selector for possible update sites
+Remove unnecessary files from vendor
+Fix notifications checks
+Fix group labels inconsistencies
+Escape argument on the meta.mount form
+Add a PSR7 middleware to handle CORS Requests for the REST API
+
+----
+Pydio 8.2.0 is a bugfix and security release for Pydio 8.X, and brings php7.2 support. See the Changelog below for commits details.
+
+Update html changelog
+Missing hook for filter_boot.conf 
+add locations that should be denied 
+fixing german translation 
+Fix filter accessible files before adding to zip 
+Fix sync view between public share and original
+Fix list task in public share
+Always open upload panel in minisite as background tasks panel is not inserted 
+Fix js request for resource without attaching cookie 
+Fix trim user id 
+Fix workspace word 
+Fix video.js version 
+Fix global quota 
+PHP7.2 fixes 
+Read latest_note url from server data instead of passing url as parameter 
+Fix FF right click menu - Close #1411 
+Use Html2Text to transform html to text in emails (cf PR #1310) 
+Better exception catching or it can break webdav upload. Close #1413 - Track count() usages for php7.2 
+Update phpseclib to fix create_function call 
+each() function is deprecated
+
+----
+Pydio 8.0.2 is a bugfix for Pydio 8.0.1, below is a list of the commits
+
+Fix ldap mapping attribute to roles
+Update version to 8.0.1
+Fixing a remote stream function
+Adding ability to re-generate refresh token if expired
+Missing hook for filter_boot.conf
+Previous vpath adapter is replaced by use_path_style_endpoint in client config (for custom url)
+Make sure action.cart will mount its react component by default.
+Clean manifest from old actions
+Disable background copy if not using session api, seems to break sync client in some case.
+Fix test before create new alias class
+Fix set context for object
+Fix test key "type" if it exists
+Fix test key "type" if it exists
+Fix migration public link with password
+Fix collabora on smb + session credential workspace
+Fix collabora on smb + session credential workspace
+Fix collabora on smb + session credential workspace
+Updated Korean translation
+Missing comma in Korean i18n file was added
+Fix remember me feature
+Fix upload dialog width when there are few uploaders - Close #1384
+Fix #1376
+Replace Pear dependency to Mail_mimeDecode to Composer library. Should remove problematic plugin dependency, see #1385
+Force redirecting to https version of Pixlr - See #1371
+Php doc fix
+False negtive on OB detection
+Fix #1393
+Typo in forbidden
+Typo
+Fix postgresql convert false to "false"
+Remove fuzzy search and upgrade elastica to 5.3.0
+Fix displaying user in sql groups
+Close session before reading audio file
+Remove unused img_library and associated images
+Fix developer doc link - Close #1395
+Add support referral binding
+Implement a default displaymode and default sorting parameter per workspace
+Fix download resuming
+Fix #1355 - Use renamed from SOURCE instead of renamed to NODE
+Remove src attributes
+Fix api v2 create user
+Reduce Batch size for delete - Fix usage of PATH parameter in S3 driver - Close #1365 at last !
+Avoid some js errors with empty values
+Forgotten console
+Fix getS3Service() method
+Add param for smb option
+Fix error while index mounted repo
+Update password fields everywhere to avoid allowing save when not correctly set.
+Fix Admin create/delete group works only if group id starts with double slash
+Fix disclaimer dialog (enable scrollBody)
+Throw an error when trying to restore on an existing file. Close #1368
+Fix write-only workspace : wrong response header - do not show activity log. Close #1367
+Hack for user specific locks and api access
+Fix quota not updating on workspace switch
+Change Accept-Ranges header
+Plugin Load ClassFile for a given php version if necessary
+Fix Advanced Search and meta fields, inc. missing Content field. Factorize in AbstractSearchEngineIndexer. Try to fix login window not appearing in some case Fix Quota panel not refreshed
+New BookmarksList - Meta/Ctrl key support in main files list (close #1351)
+Forms: lower onChange trigger timeout to avoid field blinking
+Fix field validation
+
+========================
+
+Pydio 8.0.1 - 2017/06/15 - Bug Fixes for 8.0.0
+
+[Most noticeable]
+Fix wrong path separator, triggering error on open_basedir
+Fixing pdfjs editor for Safari
+Fix force password reset
+WS List: Make Root Node droppable - Show a circular progress when loading workspace
+Fix reload in admin - Fix DND in admin.
+Do not send back hash after upload by default, not used by any sdk's yet - Optional "hash" parameter now.
+Fix notification sent to parent when parent is a template - could possibly break the hooks loop, preventing email.
+Add setting to disable widget bar in home page. Adapt welcome tour accordingly.
+
+[Other]
+Fix Film Strip Template
+Fixing the demo counter
+Added new translation keys (user frontend)
+Fixing counter
+Update README.md
+Fix home links for sync apps
+Add setting to disable the Welcome Tour. Fix #1350
+Change full screen : make browser full screen, not desktop full screen. Switch fullscreen by default on mobile.
+Fix team share rights lost on edition - Close #1352
+Editor.pdfjs : change order with imagick, and use Imagick badge if available.
+Add a scrollToView behaviour on list
+Fix Layout when no menu
+Remove some unused widgets
+Improve task display and upload global progress Add a way to change user groupPath with api v2.
+Add a quick "type-and-search" feature for roles list.
+Detect free value not submitted in mailer and auto-submit.
+UserAvatar rich card : lock on sub popover open and fix zIndex
+Put crawlPermissions inside standard upgrader, from specific 8.0.0 upgrade scripts.
+Fix Breadcrumb display when in RecycleBin Fix "Empty" action appearing only if a file is selected. Upgrade "Index" icon.
+Set fixed width to fix #1356
+Additional check if cache is corrupted when loading plugins
+Rewrite missing ServerPrompt dialogs (for OAuth redir and dynamic workspace authentication).
+Add page-based pagination to full directory in address book.
+Forgotten log
+Add setting to choose what to display in the user directory in addressbook
+Fix cache key for users count in auth.ldap
+Fix detail display for date Fix missing Drag'n'drop for detail display (close #1354) Hide info panel blue toolbar if empty
+Wrong secure token on download.
+Fix smb throw error and block access via webdav
+Fixing video resize
+Fixing diaporama orientation
+Fix webdav enable all users options
+Fix baseUrl declaration, it can be changed on logout / login
+S3 : add setting to create hidden file on mkdir (virtual folder)
+Missing message parsing after delete
+Fixing editor tab
+
+
+---- PYDIO 8.0.0
+
+This is major UX release.
+
+[Full UI Rewrite]
+
+User interface has been entirely rewritten, providing cutting-edge design principles (Material Design, by Google) on top of cutting-edge technologies. It's the best UX we've done, ever, and it's strong, stable, laid on solid fundations.
+Of course, this bold move allowed us to improve many features, some of them are described below.
+
+[Shares Tracking and Activity Reports]
+
+Public links, that are by definition 'public', can now be personalized to track more finely who is accessing a link. Send invitation enabling the new tracking tool and each user will receive a slightly different link.
+In their dashboard, users now have a way to easily summarize all their shared data, by workspace or share type. On the admin side, this share explorer allows for auditing the platform and easily finding mistakes or anomalies.
+
+[Efficient Address-book and Teams Management]
+
+The team concept of Pydio 7 has been deeply improved, allowing the users to easily manage their teams, share files or folder with them, and have the permissions updated automatically when team members are added or removed.
+This is done through a brand new Address Book component, that gives access to the whole users directories.
+
+[Enriched Admin UX]
+
+Reaffirming Pydio's commitment to open source, we have brought back the Enterprise Distribution design for the admin dashboard in the Community edition. Pydio proves to be the most advanced open source solution for businesses and larger scale users.
+
+[New features for the Enterprise Distribution]
+
+- EasyTransfer is a way for organizations to provide super simple "upload-and-share" interface to their users, in a beautiful UX while maintaining data safe.
+- The Branding Tool has been reworked to provide a more consistent way of changing the application colors.
+- Administrators now have access to an instant search-engine for plugins and parameters accross the admin dashboard.
+- Get started shortly with Pydio by simply importing a CSV file containing users.
+... And many more!
+
+[Other bug fixes]
+
+Some specific commits are listed below
+
+Crop filenames to max length in bytes
+Test creating virtual workspaces. Change isRemote() signature to take $url as parameter.
+Fix EncFS and caching issues (cherry picked from commit 980895f)
+Fix to HEAT #1824 - force download of vendor specific files
+Fix for HEAT #1871: ssl config for custom upload
+React upgrade Step 2: react 15
+Added Italian translations for core.notification
+React 15 migration fixes MaterialUI legacy & recent now coexist in the application, start using new elements Start moving js out of the manifests
+Definitely remove jumploader, project is dead.
+Move old prototype-based Connexion class to window.fetch + polyfill.
+Remove sync calls
+BOLD MOVE: remove PrototypeJS !!! 10 YEARS OF GLORY !!!
+Moved last php-based compilation to grunt instead. Move html templates to top level
+Trusted Servers implementation by simply forwarding user_list_authorized_users to the remote server with valid credentials.
+Add a "TARGET_USERS" concept to public links, to pass an ID in the url and increment counters only for this target user.
+Replace hardcode "public" with PUBLIC_BASEURI
+Fixing System JS
+Change browserify options to use alias / external Use SystemJS instead of custom implementation for libraries dependencies.
+Fix error No repo found for user
+Fix error User not found when load shares
+Fix sync user from ldap in cli mode consumes ram
+For the moment, do not package access.mysql anymore
+Php 7.1 does not support &$this anymore
+Exec commands: break on error
+Translate to Spanish
+New photo were way-too-big...
+Added Copyrights header in source files
+
+
+--
+See core/doc/PREVIOUS_RELEASES file to learn more about previous releases.
